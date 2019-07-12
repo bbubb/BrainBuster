@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent">
+
+    <TextView
+        android:id="@+id/tv_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginVertical="16dp"
+        android:text="This is a test for where the question would be asked. Does it seem to be the right settings?"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_A"
+        app:layout_constraintVertical_bias=".05" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_A"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="32dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_B"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_question"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_B"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="B"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/btn_C"
+        app:layout_constraintEnd_toEndOf="@id/btn_A"
+        app:layout_constraintStart_toStartOf="@id/btn_A"
+        app:layout_constraintTop_toBottomOf="@id/btn_A" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_C"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="C"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/btn_D"
+        app:layout_constraintEnd_toEndOf="@id/btn_A"
+        app:layout_constraintStart_toStartOf="@id/btn_A"
+        app:layout_constraintTop_toBottomOf="@id/btn_B" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_D"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="D"
+        android:layout_marginBottom="16dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/btn_A"
+        app:layout_constraintStart_toStartOf="@id/btn_A"
+        app:layout_constraintTop_toBottomOf="@id/btn_C" />
+
+    <TextView
+        android:id="@+id/tv_A"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginHorizontal="16dp"
+        android:paddingHorizontal="8dp"
+        android:text="Answer A"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintTop_toTopOf="@id/btn_A"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_B"
+        app:layout_constraintStart_toEndOf="@id/btn_A"/>
+
+    <TextView
+        android:id="@+id/tv_B"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Answer B"
+        android:layout_marginHorizontal="16dp"
+        android:paddingHorizontal="8dp"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintTop_toBottomOf="@id/btn_A"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_C"
+        app:layout_constraintStart_toEndOf="@id/btn_B"/>
+
+    <TextView
+        android:id="@+id/tv_C"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Answer C"
+        android:layout_marginHorizontal="16dp"
+        android:paddingHorizontal="8dp"
+        android:gravity="start"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintTop_toBottomOf="@id/btn_B"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_D"
+        app:layout_constraintStart_toEndOf="@id/btn_C"/>
+
+    <TextView
+        android:id="@+id/tv_D"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Answer D"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" android:layout_marginVertical="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:paddingHorizontal="8dp"
+        app:layout_constraintTop_toBottomOf="@id/btn_C"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/btn_D"
+        app:layout_constraintStart_toEndOf="@id/btn_D" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
