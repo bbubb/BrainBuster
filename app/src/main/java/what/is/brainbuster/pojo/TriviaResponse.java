@@ -9,7 +9,7 @@ public class TriviaResponse{
 	private int responseCode;
 
 	@SerializedName("results")
-	private List<ResultsItem> results;
+	private List<ResultsItem> results = null;
 
 	public void setResponseCode(int responseCode){
 		this.responseCode = responseCode;

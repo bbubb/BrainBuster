@@ -25,6 +25,15 @@ public class StartFrag extends Fragment {
         return v;
     }
 
+    @OnClick(R.id.btn_start)
+    public void startClicked() {
+        QuestionsFrag questionsFrag = new QuestionsFrag();
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_frame, questionsFrag, "Questions Fragment")
+                .commit();
+    }
+
     @Override
     public void onDetach() {
         super.onDetach();

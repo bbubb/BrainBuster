@@ -16,7 +16,7 @@ public class ResultsItem{
 	private String correctAnswer;
 
 	@SerializedName("incorrect_answers")
-	private List<String> incorrectAnswers;
+	private List<String> incorrectAnswers = null;
 
 	@SerializedName("category")
 	private String category;

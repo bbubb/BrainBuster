@@ -3,17 +3,26 @@ package what.is.brainbuster;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.button.MaterialButton;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import what.is.brainbuster.pojo.ResultsItem;
+import what.is.brainbuster.pojo.TriviaResponse;
 import what.is.brainbuster.retrofit.OpenTriviaApiService;
 import what.is.brainbuster.retrofit.RetrofitClientInstance;
 
@@ -21,8 +30,6 @@ import what.is.brainbuster.retrofit.RetrofitClientInstance;
 public class ActivityMain extends AppCompatActivity {
 
     private static final String TAG = "ActivityMain";
-    QuestionsFrag questionsFrag;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,37 +43,11 @@ public class ActivityMain extends AppCompatActivity {
                 .replace(R.id.main_frame, startFrag, "Start Fragment")
                 .commit();
     }
-
-    @OnClick(R.id.btn_start)
-    public void startClicked() {
-        QuestionsFrag questionsFrag = new QuestionsFrag();
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.main_frame, questionsFrag, "Questions Fragment")
-                .commit();
-    }
-
-    public void retrofitRequest(int numOfQquestions, int category, String difficulty, String typeOfQuestions) {
-
-        OpenTriviaApiService openTriviaApiService = RetrofitClientInstance.getRetrofit().create(OpenTriviaApiService.class);
-
-        Call<List<Objects>> triviaCall = openTriviaApiService.loadTriviaApi(numOfQquestions, category, difficulty, typeOfQuestions);
-
-        triviaCall.enqueue(new Callback<List<Objects>>() {
-            @Override
-            public void onResponse(Call<List<Objects>> call, Response<List<Objects>> response) {
-                if (response.isSuccessful()) {
-                    Log.d(TAG, "onResponse: Success");
-                    questionsFrag(response.body());
-                } else {
-                    Log.d(TAG, "onResponse: Failure");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Objects>> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t.getLocalizedMessage());
-            }
-        });
-    }
 }
+
+//    @OnClick(R.id.btn_start)
+
+//    private void loadquestions(List<Objects> body) {
+//        int numQuestions = body.size();
+//        for(int i = 0; i<=numQuestions; i++){
+//            ResultsItem resultsItem = new ResultsItem(body);
