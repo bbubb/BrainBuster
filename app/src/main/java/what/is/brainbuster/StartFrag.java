@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -16,6 +18,14 @@ import butterknife.Unbinder;
 
 public class StartFrag extends Fragment {
     Unbinder unbinder;
+    SettingsFrag settingsFrag;
+    @BindView(R.id.main_frame)
+    FrameLayout mainFrame;
+
+    //use for categoryfrag
+//    CategoryFrag categoryFrag;
+//    String category;
+//    RecyclerView recyclerViewCategory;
 
     @Nullable
     @Override
@@ -27,11 +37,21 @@ public class StartFrag extends Fragment {
 
     @OnClick(R.id.btn_start)
     public void startClicked() {
-        QuestionsFrag questionsFrag = new QuestionsFrag();
+        SettingsFrag settingsFrag = new SettingsFrag();
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.main_frame, questionsFrag, "Questions Fragment")
+                .replace(R.id.main_frame, settingsFrag, "Settings Fragment")
                 .commit();
+        mainFrame.setVisibility(View.GONE);
+
+
+
+        //use for categoryFrag
+//        getFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.rv_category, categoryFrag, "Category Selection")
+//                .addToBackStack("Category").commit();
+
     }
 
     @Override

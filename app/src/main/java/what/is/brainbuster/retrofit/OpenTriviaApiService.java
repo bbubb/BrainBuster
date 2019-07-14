@@ -8,7 +8,7 @@ import what.is.brainbuster.pojo.TriviaResponse;
 public interface OpenTriviaApiService {
 
     @GET("/api.php")
-    Call<TriviaResponse> loadTriviaApi(@Query("amount") int numOfQuestions, @Query("category") int category, @Query("difficulty") String difficulty, @Query("type") String typeOfQuestion);
+    Call<TriviaResponse> loadTriviaApi(@Query("amount") String numOfQuestions, @Query("category") String category, @Query("difficulty") String difficulty, @Query("type") String typeOfQuestion);
 
 }
 //https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=multiple

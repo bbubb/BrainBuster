@@ -62,11 +62,11 @@ public class QuestionsFrag extends Fragment {
         View v = inflater.inflate(R.layout.questions_layout, container, false);
         unbinder = ButterKnife.bind(this, v);
 
-        retrofitRequest(1, 9, "easy", "multiple");
+        retrofitRequest("1", "9", "easy", "multiple");
         return v;
     }
 
-    public void retrofitRequest(int numOfQquestions, int category, String difficulty, String typeOfQuestions) {
+    public void retrofitRequest(String numOfQquestions, String category, String difficulty, String typeOfQuestions) {
 
         OpenTriviaApiService openTriviaApiService = RetrofitClientInstance.getRetrofit().create(OpenTriviaApiService.class);
 

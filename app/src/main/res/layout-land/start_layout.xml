@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorPrimaryDark"
     tools:ignore="MissingDefaultResource">
 
     <ImageView
@@ -31,10 +31,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="16dp"
-        app:rippleColor="@color/colorAccent"
+        app:rippleColor="@color/primaryLightColor"
         android:text="START"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:textColor="@color/primaryTextColor"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
