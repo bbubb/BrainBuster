@@ -1,30 +1,23 @@
 package what.is.brainbuster.Category;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
-
-import java.util.List;
-
+import com.google.android.material.card.MaterialCardView;
 import what.is.brainbuster.R;
-import what.is.brainbuster.SettingsFrag;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
 
     private CategoryList[] categoryData;
-    private Context context;
     private OnCategorySelection categoryToSettingsListener;
-    SettingsFrag settingsFrag;
+
 
     public interface OnCategorySelection{
-        void categorySelected(Integer category);
+        void categorySelected(String categoryQuery);
     }
 
     public CategoryAdapter (CategoryList[] categoryData, OnCategorySelection onCategorySelection){
@@ -43,28 +36,26 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
-        final CategoryList categoryList = categoryData[position];
         holder.ivCategory.setImageResource(categoryData[position].getImgId());
-        holder.itemView.
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                categoryToSettingsListener.categorySelected(category);
-            }
-        });
+        holder.itemView.setTooltipText(categoryData[position].getCategoryDescription());
+        holder.itemView.setOnClickListener(view -> categoryToSettingsListener.categorySelected(categoryData[position].getCategoryQuery()));
     }
 
     @Override
     public int getItemCount() {
-        return categoryList.size();
+        return categoryData.length;
     }
 
     class CategoryViewHolder extends RecyclerView.ViewHolder{
-        ImageView ivCategory;
-
+        public ImageView ivCategory;
+        public TextView tvCategory;
+        public MaterialCardView materialCardView;
         public CategoryViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivCategory = itemView.findViewById(R.id.iv_category);
+            this.ivCategory = itemView.findViewById(R.id.iv_category);
+            this.tvCategory = itemView.findViewById(R.id.tv_category);
+            materialCardView = itemView.findViewById(R.id.cv_category);
+
         }
     }
 }

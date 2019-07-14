@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import butterknife.BindView;
@@ -16,6 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import what.is.brainbuster.Category.CategoryAdapter;
 import what.is.brainbuster.Category.CategoryImageAssets;
+import what.is.brainbuster.Category.CategoryList;
 
 public class CategoryFrag extends Fragment {
     Unbinder unbinder;
@@ -33,12 +35,11 @@ public class CategoryFrag extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.category_layout, container, false);
         unbinder = ButterKnife.bind(this, v);
-        ImageView categoryIconImage = v.findViewById(R.id.iv_category);
-        CategoryAdapter categoryAdapter = new CategoryAdapter(getContext(), CategoryImageAssets.getCategoryList());
-        categoryIconImage.
-                new LinearLayoutManager(recyclerViewCategory.getContext()));
+        CategoryAdapter categoryAdapter = new CategoryAdapter(CategoryImageAssets.getCategoryList(), ;//supposed to onClick);
         recyclerViewCategory.setHasFixedSize(true);
+        recyclerViewCategory.setLayoutManager(new LinearLayoutManager(recyclerViewCategory.getContext()));
+        recyclerViewCategory.setAdapter(categoryAdapter);
         return v;
-
+        
     }
 }
