@@ -4,19 +4,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import what.is.brainbuster.Category.CategoryAdapter;
+import what.is.brainbuster.Category.CategoryImageAssets;
 
 public class CategoryFrag extends Fragment {
     Unbinder unbinder;
@@ -32,9 +31,12 @@ public class CategoryFrag extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.category_layout, recyclerViewCategory, false);
+        View v = inflater.inflate(R.layout.category_layout, container, false);
         unbinder = ButterKnife.bind(this, v);
-        recyclerViewCategory.setLayoutManager(new LinearLayoutManager(recyclerViewCategory.getContext()));
+        ImageView categoryIconImage = v.findViewById(R.id.iv_category);
+        CategoryAdapter categoryAdapter = new CategoryAdapter(getContext(), CategoryImageAssets.getCategoryList());
+        categoryIconImage.
+                new LinearLayoutManager(recyclerViewCategory.getContext()));
         recyclerViewCategory.setHasFixedSize(true);
         return v;
 

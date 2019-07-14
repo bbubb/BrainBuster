@@ -18,7 +18,7 @@ import what.is.brainbuster.SettingsFrag;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
 
-    private List<Integer> categoryList;
+    private CategoryList[] categoryData;
     private Context context;
     private OnCategorySelection categoryToSettingsListener;
     SettingsFrag settingsFrag;
@@ -27,8 +27,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         void categorySelected(Integer category);
     }
 
-    public CategoryAdapter (List<Integer> categoryList, OnCategorySelection onCategorySelection){
-        this.categoryList = categoryList;
+    public CategoryAdapter (CategoryList[] categoryData, OnCategorySelection onCategorySelection){
+        this.categoryData = categoryData;
         this.categoryToSettingsListener = onCategorySelection;
     }
 
@@ -36,15 +36,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     @Override
     public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.category_layout, parent, false);
-        context = parent.getContext();
-        return new CategoryViewHolder(view);
+        View itemList = inflater.inflate(R.layout.category_layout, parent, false);
+        CategoryViewHolder categoryViewHolder = new CategoryViewHolder(itemList);
+        return categoryViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
-        Integer category = categoryList.get(position);
-        Glide.with(context).load(category).into(holder.ivCategory);
+        final CategoryList categoryList = categoryData[position];
+        holder.ivCategory.setImageResource(categoryData[position].getImgId());
+        holder.itemView.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

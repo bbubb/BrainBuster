@@ -19,8 +19,6 @@ import butterknife.Unbinder;
 public class StartFrag extends Fragment {
     Unbinder unbinder;
     SettingsFrag settingsFrag;
-    @BindView(R.id.main_frame)
-    FrameLayout mainFrame;
 
     //use for categoryfrag
 //    CategoryFrag categoryFrag;
@@ -40,18 +38,14 @@ public class StartFrag extends Fragment {
         SettingsFrag settingsFrag = new SettingsFrag();
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.main_frame, settingsFrag, "Settings Fragment")
-                .commit();
-        mainFrame.setVisibility(View.GONE);
-
-
-
-        //use for categoryFrag
-//        getFragmentManager()
-//                .beginTransaction()
-//                .replace(R.id.rv_category, categoryFrag, "Category Selection")
-//                .addToBackStack("Category").commit();
-
+                .add(R.id.settings_frame, settingsFrag, "Settings Fragment")
+                .addToBackStack("category").commit();
+        CategoryFrag categoryFrag = new CategoryFrag();
+        getFragmentManager()
+                .beginTransaction()
+                .add(R.id.rv_category, categoryFrag, "Category Fragment")
+                .addToBackStack("settings").commit();
+//        mainFrame.setVisibility(View.GONE);
     }
 
     @Override

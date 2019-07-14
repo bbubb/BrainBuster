@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,12 +19,14 @@ import butterknife.Unbinder;
 
 public class SettingsFrag extends Fragment {
     Unbinder unbinder;
+    @BindView(R.id.settings_frame)
+    FrameLayout settingsFrame;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.settings_layout, container, false );
+        View v = inflater.inflate(R.layout.settings_layout, settingsFrame, false);
         unbinder = ButterKnife.bind(this, v);
         return v;
     }
