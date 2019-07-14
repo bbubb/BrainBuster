@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">BrainBuster</string>
+    <string name="numberOfQuestions">Select Number of Questions</string>
+    <string-array name="numberOfQuestions">
+        <item>30</item>
+        <item>20</item>
+        <item>10</item>
+        <item>5</item>
+    </string-array>
 </resources>

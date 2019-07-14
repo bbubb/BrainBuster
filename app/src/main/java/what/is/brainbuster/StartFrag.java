@@ -1,10 +1,10 @@
 package what.is.brainbuster;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,17 +13,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.BindView;
 import butterknife.Unbinder;
 
 public class StartFrag extends Fragment {
     Unbinder unbinder;
     SettingsFrag settingsFrag;
+    String category;
+    RecyclerView recyclerViewCategory;
+    private OnFragmentInteractionListener listener;
 
-    //use for categoryfrag
-//    CategoryFrag categoryFrag;
-//    String category;
-//    RecyclerView recyclerViewCategory;
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        try {
+            listener = (OnFragmentInteractionListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement onViewSelected");
+        }
+    }
 
     @Nullable
     @Override
@@ -35,22 +42,19 @@ public class StartFrag extends Fragment {
 
     @OnClick(R.id.btn_start)
     public void startClicked() {
-        SettingsFrag settingsFrag = new SettingsFrag();
-        getFragmentManager()
-                .beginTransaction()
-                .add(R.id.settings_frame, settingsFrag, "Settings Fragment")
-                .addToBackStack("category").commit();
-        CategoryFrag categoryFrag = new CategoryFrag();
-        getFragmentManager()
-                .beginTransaction()
-                .add(R.id.rv_category, categoryFrag, "Category Fragment")
-                .addToBackStack("settings").commit();
-//        mainFrame.setVisibility(View.GONE);
+        listener.startGame();
+
+
+//        setVisibility(View.GONE);
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         unbinder.unbind();
+    }
+
+    interface OnFragmentInteractionListener {
+        void startGame();
     }
 }
