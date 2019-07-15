@@ -1,5 +1,6 @@
 package what.is.brainbuster.Category;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,15 +15,19 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
     private CategoryList[] categoryData;
     private OnCategorySelection categoryToSettingsListener;
+    Bundle categoryBundle;
 
+    public CategoryAdapter(CategoryList[] categoryData) {
+        this.categoryData = categoryData;
+    }
 
     public interface OnCategorySelection{
         void categorySelected(String categoryQuery);
     }
 
-    public CategoryAdapter (CategoryList[] categoryData){
+    public CategoryAdapter (CategoryList[] categoryData, String categoryQueryData){
         this.categoryData = categoryData;
-//        this.categoryToSettingsListener = onCategorySelection;
+        this.categoryToSettingsListener.categorySelected(categoryQueryData);
     }
 
     @NonNull
@@ -39,7 +44,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         holder.ivCategory.setImageResource(categoryData[position].getImgId());
         holder.itemView.setTooltipText(categoryData[position].getCategoryDescription());
         holder.itemView.setOnClickListener(view -> categoryToSettingsListener.categorySelected(categoryData[position].getCategoryQuery()));
-    }
+}
 
     @Override
     public int getItemCount() {

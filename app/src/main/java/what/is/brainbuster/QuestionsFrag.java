@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,7 +33,9 @@ public class QuestionsFrag extends Fragment {
     Unbinder unbinder;
     private static final String TAG = "QuestionsFrag";
     ArrayList<String> answers;
-    String question, correctAnswer, questionNumber;
+    String question, correctAnswer, questionNumber, numOfQestions, category, difficulty, typeOfQuestions, jsonSettings;
+    Bundle gameSettingsBundle;
+    GameSettings gameSettings;
     @BindView(R.id.tv_question)
     TextView tvQuestion;
     @BindView(R.id.tv_A)
@@ -61,10 +64,20 @@ public class QuestionsFrag extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.questions_layout, container, false);
         unbinder = ButterKnife.bind(this, v);
-
-        retrofitRequest("1", "9", "easy", "multiple");
+        getQuestionsMain(gameSettingsBundle);
+        retrofitRequest(numOfQestions,category,difficulty,"multiple");
         return v;
     }
+
+    public void getQuestionsMain (Bundle gameSettingsBundle){
+        if (gameSettingsBundle != null) {
+            jsonSettings = gameSettingsBundle.getString("Game Settings", jsonSettings);
+            gameSettings = new Gson().fromJson(jsonSettings, GameSettings.class);
+
+//            retrofitRequest(numOfQestions, category, difficulty, "multiple");
+        }
+    }
+
 
     public void retrofitRequest(String numOfQquestions, String category, String difficulty, String typeOfQuestions) {
 
@@ -80,6 +93,7 @@ public class QuestionsFrag extends Fragment {
                 answers = new ArrayList<String>();
                 question = "";
                 correctAnswer = "";
+
 
                 ResultsItem resultsItem = response.body().getResults().get(0);
 

@@ -1,6 +1,8 @@
 package what.is.brainbuster;
 
-public class GameSettings {
+import java.io.Serializable;
+
+public class GameSettings implements Serializable {
     private String numberOfQuestions;
     private String category;
     private String difficulty;

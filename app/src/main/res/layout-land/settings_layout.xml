@@ -19,7 +19,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent=".4"
-        tools:listitem="@layout/category_item" />
+        tools:listitem="@layout/category_item"
+        android:layout_marginStart="30dp"/>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,7 +40,7 @@
             android:text="GAME DIFFICULTY"
             android:textSize="36sp"
             android:textStyle="bold"
-            app:layout_constraintVertical_bias=".25"
+            app:layout_constraintVertical_bias=".1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,35 +56,46 @@
             app:layout_constraintEnd_toEndOf="@id/tv_difficulty"
             app:layout_constraintStart_toStartOf="@id/tv_difficulty"
             app:layout_constraintTop_toBottomOf="@id/tv_difficulty"
+            android:background="@color/secondaryColor"
             app:singleSelection="true">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_easy"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="EASY"
-                android:textAlignment="center"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_medium"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="MEDIUM"
-                android:textAlignment="center"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_hard"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="HARD"
-                android:textAlignment="center"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
         </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/dm_numOfQuestions"
+            app:layout_constraintStart_toStartOf="@id/btg_difficulty"
+            app:layout_constraintEnd_toEndOf="@id/btg_difficulty"
+            android:text="NUMBER OF QUESTIONS"
+            android:textSize="32sp"
+            android:textStyle="bold"
+
+            />
 
         <Spinner
             android:id="@+id/dm_numOfQuestions"
@@ -91,14 +103,28 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             android:spinnerMode="dropdown"
-            android:background="@color/secondaryColor"
+            android:background="@color/primaryLightColor"
             android:prompt="@string/numberOfQuestions"
             android:entries="@array/numberOfQuestions"
-            android:dropDownSelector="@color/secondaryColor"
+            android:dropDownSelector="@color/primaryLightColor"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias=".70"
+            app:layout_constraintVertical_bias=".625"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_startGame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/settings_frame"
+            app:layout_constraintBottom_toBottomOf="@id/settings_frame"
+            app:layout_constraintEnd_toEndOf="@id/settings_frame"
+            app:layout_constraintStart_toStartOf="@id/settings_frame"
+            app:layout_constraintVertical_bias=".85"
+            android:text="START GAME"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="24sp"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

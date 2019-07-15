@@ -43,9 +43,6 @@ public class StartFrag extends Fragment {
     @OnClick(R.id.btn_start)
     public void startClicked() {
         listener.startGame();
-
-
-//        setVisibility(View.GONE);
     }
 
     @Override
