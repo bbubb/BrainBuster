@@ -33,7 +33,8 @@ public class QuestionsFrag extends Fragment {
     Unbinder unbinder;
     private static final String TAG = "QuestionsFrag";
     ArrayList<String> answers;
-    String question, correctAnswer, questionNumber, numOfQestions, category, difficulty, typeOfQuestions, jsonSettings;
+    String question, correctAnswer, numOfQuestions, category, difficulty, typeOfQuestions, jsonSettings;
+    int questionNumber;
     Bundle gameSettingsBundle;
     GameSettings gameSettings;
     @BindView(R.id.tv_question)
@@ -65,7 +66,7 @@ public class QuestionsFrag extends Fragment {
         View v = inflater.inflate(R.layout.questions_layout, container, false);
         unbinder = ButterKnife.bind(this, v);
         getQuestionsMain(gameSettingsBundle);
-        retrofitRequest(numOfQestions,category,difficulty,"multiple");
+        retrofitRequest(numOfQuestions,category,difficulty,"multiple");
         return v;
     }
 
@@ -79,11 +80,11 @@ public class QuestionsFrag extends Fragment {
     }
 
 
-    public void retrofitRequest(String numOfQquestions, String category, String difficulty, String typeOfQuestions) {
+    public void retrofitRequest(String numOfQuestions, String category, String difficulty, String typeOfQuestions) {
 
         OpenTriviaApiService openTriviaApiService = RetrofitClientInstance.getRetrofit().create(OpenTriviaApiService.class);
 
-        Call<TriviaResponse> triviaCall = openTriviaApiService.loadTriviaApi(numOfQquestions, category, difficulty, typeOfQuestions);
+        Call<TriviaResponse> triviaCall = openTriviaApiService.loadTriviaApi(numOfQuestions, category, difficulty, typeOfQuestions);
 
         triviaCall.enqueue(new Callback<TriviaResponse>() {
             @Override
@@ -93,20 +94,26 @@ public class QuestionsFrag extends Fragment {
                 answers = new ArrayList<String>();
                 question = "";
                 correctAnswer = "";
+                questionNumber = Integer.parseInt(numOfQuestions);
 
+                for(int i=0;i<questionNumber;i++) {
 
-                ResultsItem resultsItem = response.body().getResults().get(0);
+                    ResultsItem resultsItem = response.body().getResults().get(i);
 
-                answers.addAll(resultsItem.getIncorrectAnswers());
-                answers.add(resultsItem.getCorrectAnswer());
-                correctAnswer = resultsItem.getCorrectAnswer();
-                Collections.shuffle(answers);
-                tvA.setText(answers.get(0));
-                tvB.setText(answers.get(1));
-                tvC.setText(answers.get(2));
-                tvD.setText(answers.get(3));
-                question = resultsItem.getQuestion();
-                tvQuestion.setText(question);
+                    answers.addAll(resultsItem.getIncorrectAnswers());
+                    answers.add(resultsItem.getCorrectAnswer());
+                    correctAnswer = resultsItem.getCorrectAnswer();
+                    Collections.shuffle(answers);
+                    tvA.setText(answers.get(0));
+                    tvB.setText(answers.get(1));
+                    tvC.setText(answers.get(2));
+                    tvD.setText(answers.get(3));
+                    question = resultsItem.getQuestion();
+                    tvQuestion.setText(question);
+
+                    //require user response before loopings to next question
+//                    questionAnswered();
+                }
             }
 
             @Override

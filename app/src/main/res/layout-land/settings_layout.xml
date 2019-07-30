@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent=".4"
         tools:listitem="@layout/category_item"
-        android:layout_marginStart="30dp"/>
+        android:paddingStart="30dp"/>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
